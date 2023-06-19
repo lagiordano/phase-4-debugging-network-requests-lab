@@ -62,12 +62,12 @@ developing your own process.
 
 - Add a new toy when the toy form is submitted
 
-  - How I debugged:
+  - How I debugged: Attempted to create toy on front end, checked console and network in dev tools. 500 - Internal server error. This directed me to the rails server log, which provided a name error, for 'Toys'. Which advised me there is an issue with constant used in the Toys controller. This is a typo, and should be 'Toy.create'. Fixed this error and am now able to add new toy.
 
 - Update the number of likes for a toy
 
-  - How I debugged:
+  - How I debugged: Liked a toy on front end and checked dev tools (console and network). Network tab - headers had status code of 204 No Content, but console logged Uncaught Syntax Error - unexpected end of json input. Advised that the front end is expecting json to be returned from the update route. Confirmed in Toy controller - no json is returned. Edited update method to render json (the updated toy object), and send a status code 200. 
 
 - Donate a toy to Goodwill (and delete it from our database)
 
-  - How I debugged:
+  - How I debugged: Donated a toy on the front end, checked dev tools. Returned a 404 error. Preview in Network tab advised there is a routing error, 'no route matches delete'. Confirmed on rails server log. Checked routes, destroy hadn't been listed in Toys resources. Updated to include ':destroy'. Checked front-end again, toy deleted and status 204 returned.
